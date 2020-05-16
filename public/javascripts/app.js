@@ -1,5 +1,6 @@
+
 $(document).ready(function(){
-    console.log($('input[name="doLogin"]'));
+    // ログイン
     $('#doLogin').on('click', function(){
         const username = $("#user_name").val();
         const password = $("#password").val();
@@ -24,6 +25,7 @@ $(document).ready(function(){
             location.href = "/";
         })
     });
+    // 登録
     $('#doRegist').on('click', function(){
         const username = $("#user_name").val();
         const password = $("#password").val();
@@ -48,7 +50,61 @@ $(document).ready(function(){
             location.href = "/";
         })
     });
+
+    // ガチャ
     $('#doLoadCard').on('click', function(){
-        alert("ok");
+        // 回数チェック
+        // テスト
+        
+        if(checkCount() === 0){
+            alert("まだ引けません！");
+        }else{
+            // 引く
+
+            // 引いたあとの処理
+            // cookieの時間に+5分する
+
+            
+
+            if(typeof $.cookie("gatyacount") === 'undefined'){
+                // 現在時刻を代入
+                $.cookie("gatyacount", new Date().toString(), { expires: 1 });
+                $('#gacha_count').text(`あと ${checkCount()} 回`);
+            }else{
+                let ct = new Date($.cookie("gatyacount"));
+                ct = ct.setMinutes(ct.getMinutes() + 5);
+                $.cookie("gatyacount", new Date(ct).toString(), { expires: 1 });
+                $('#gacha_count').text(`あと ${checkCount()} 回`);
+            }
+            
+        }
     });
+    
+    // 回数表示と確認
+    if ($('#gacha_count')[0]) {
+        // cookieの存在確認
+        $('#gacha_count').text(`あと ${checkCount()} 回`);
+    }
 });
+
+function checkCount(){
+    const ck = $.cookie("gatyacount");
+    if(typeof ck === 'undefined'){
+        // cookieがない
+        return 1;
+    }else{
+        // cookieがある
+        // 現在日時を取得
+        const nowTime = new Date();
+        const gTime = new Date($.cookie("gatyacount"));
+        // 時刻が同じ場合比較処理を行う。
+        if(nowTime.getHours() === gTime.getHours()){
+            const elapsedTime = Math.abs(gTime - nowTime);
+            const mins = elapsedTime / ( 1000 * 60 );
+            const count = Math.floor(mins) / 5;
+            return Math.floor(count);
+        }else{
+            return 1;
+        }
+    }
+}
