@@ -1,0 +1,11 @@
+extends layout
+
+block content
+
+  p error: #{error}
+
+  input(type="text", id="user_name", name="user_name", maxlength=50)
+  input(type="password", id="password", name="password", autocomplete="password", maxlength=32)
+
+  button(id="doRegist", name="doRegist", value="ガチャる!!")
+    |ガチャる!!
