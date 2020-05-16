@@ -1,6 +1,95 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+html, body { 
+  height: 100%; 
+  
+}
+
+.wrap-body-content{
+  width: 100%;
+  height: 100%;
+}
+
+.bg {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-image: url("../images/bg.jpg");
+}
+
+.wrapper{
+  width: 400px;
+  min-width: 400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.header{
+  width: 100%;
+  min-height: 100px;
+  display: flex;
+}
+
+.header img {
+  height: 100px;
+}
+
+.gacha_img_container{
+  width: 200px;
+  margin: 60px auto 0;
+  background-image: url("../images/gacha.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  min-height: 350px;
+}
+
+.login_box{
+  width: 280px;
+  padding: 16px;
+  background-color: #FFFFFF;
+  margin: -160px auto 0;
+  box-shadow:0px 1px 3px 0px rgba(0,0,0,0.3);
+  border-radius: 5px;
+}
+
+.label_box{
+  margin-bottom: 4px;
+}
+.input_box{
+  border-radius: 5px;
+  border: 1px solid #6B6B6B ;
+  padding: 4px 8px;
+  margin-bottom: 16px;
+}
+
+.botton_box{
+  display: flex;
+}
+
+.botton_box .regist_btn{
+  width: 48%;
+  padding: 16px 0;
+  margin-right: 2%;
+  font-weight: bold;
+  border-radius: 5px;
+  box-shadow:0px 1px 3px 0px rgba(0,0,0,0.3);
+  background-color: #F1A000;
+  color: #FFFFFF;
+}
+
+.botton_box .login_btn{
+  border-radius: 5px;
+  width: 48%;
+  padding: 16px 0;
+  margin-left: 2%;
+  font-weight: bold;
+  box-shadow:0px 1px 3px 0px rgba(0,0,0,0.3);
+  background-color: #05A100;
+  color: #FFFFFF;
+}
+
+.error_box{
+  color: #F00;
 }
 
 a {

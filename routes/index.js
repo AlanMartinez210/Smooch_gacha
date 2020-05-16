@@ -55,9 +55,9 @@ const cord_resouce = {
 /* GET home page. */
 router.get('/', function(req, res, next) {
   if(typeof req.session.user !== 'undefined') {
-    res.render('gacha', { title: 'Express' });
+    res.render('gacha');
   }else{
-    res.render('index', { title: 'Express', error : ''});
+    res.render('index');
   }
 });
 
@@ -70,8 +70,18 @@ router.post('/regist', async function(req, res) {
     password: req.body.password
   }
 
-  if(user_data.user_name > 20) res.render('index', { title: 'Express', error : 'ユーザー名は20文字までです。'});
-  if(user_data.password > 8) res.render('index', { title: 'Express', error : 'パスワードは8文字までです。'});
+  if(user_data.user_name.length > 20){
+    res.json({
+      status: "error",
+      message: "ユーザー名は20文字までです。"
+    });
+  } 
+  if(user_data.password.length > 8){
+    res.json({
+      status: "error",
+      message: "パスワードは8文字までです。"
+    });
+  } 
   
   try{
     connection = await mysql.createConnection(mysqlConnObj);
@@ -82,11 +92,13 @@ router.post('/regist', async function(req, res) {
       user_name: user_data.user_name
     }
 
-    res.render('gacha', { title: 'Express' });
+    res.json({status: "success"});
 
   }catch (err){
-    console.log(err);
-    res.render('index', { title: 'Express', error : 'エラーが発生しました。ログインし直してください。'});
+    res.json({
+      status: "error",
+      message: "エラーが発生しました。もう一度やり直してください。"
+    });
   }finally{
     connection.end();
     return;
@@ -103,24 +115,43 @@ router.post('/login',　async function(req, res, next) {
     password: req.body.password
   }
 
-  if(user_data.user_name > 20) res.render('index', { title: 'Express', error : 'ユーザー名は20文字までです。'});
-  if(user_data.password > 8) res.render('index', { title: 'Express', error : 'パスワードは8文字までです。'});
+  if(user_data.user_name.length > 20){
+    res.json({
+      status: "error",
+      message: "ユーザー名は20文字までです。"
+    });
+  } 
+  if(user_data.password.length > 8){
+    res.json({
+      status: "error",
+      message: "パスワードは8文字までです。"
+    });
+  }
   
   try{
     connection = await mysql.createConnection(mysqlConnObj);
     const [result] = await connection.query(`SELECT * from users where user_name = '${user_data.user_name}' and password = '${user_data.password}'`);
 
-    console.log(result[0]);
+    if(typeof result[0] === 'undefined'){
+      res.json({
+        status: "error",
+        message: "ユーザーは存在しません。新規登録してください。"
+      });
+    }
+
 
     req.session.user = {
       user_id: result[0].id,
       user_name: result[0].user_name
     }
 
-    res.render('gacha', { title: 'Express' });
+    res.json({status: "success"});
+
   }catch (err){
-    console.log(err);
-    res.render('index', { title: 'Express', error : 'エラーが発生しました。ログインし直してください。'});
+    res.json({
+      status: "error",
+      message: "エラーが発生しました。もう一度やり直してください。"
+    });
   }finally{
     connection.end();
     return;
@@ -131,13 +162,13 @@ router.post('/login',　async function(req, res, next) {
 // ユーザーログアウト
 router.post('/logout',　async function(req, res, next) {
   req.session.user = {}
-  res.render('index', { title: 'Express', error : ''});
+  res.redirect('/');
 });
 
 
 // ガチャを実施
 router.post('/loadcard', async function(req, res, next) {
-  if(typeof req.session.user === 'undefined') res.render('index', { title: 'Express', error : 'ログインしてください。'});
+  if(typeof req.session.user === 'undefined') res.render('index', { error : 'ログインしてください。'});
 
   let loadcard;
   let group;
@@ -177,8 +208,10 @@ router.post('/loadcard', async function(req, res, next) {
     });
 
   }catch (err){
-    console.log(err);
-    res.json({status: "error"});
+    res.json({
+      status: "error",
+      message: "エラーが発生しました。もう一度やり直してください。"
+    });
   }finally{
     connection.end();
     return;
@@ -187,7 +220,7 @@ router.post('/loadcard', async function(req, res, next) {
 
 // カードの一覧を開く
 router.get('/showcardlist', async function(req, res, next) {
-  if(typeof req.session.user === 'undefined') res.render('index', { title: 'Express', error : 'ログインしてください。'});
+  if(typeof req.session.user === 'undefined') res.render('index', { error : 'ログインしてください。'});
 
   try{
     connection = await mysql.createConnection(mysqlConnObj);
@@ -207,8 +240,10 @@ router.get('/showcardlist', async function(req, res, next) {
     });
 
   }catch (err){
-    console.log(err);
-    res.json({status: "error"});
+    res.json({
+      status: "error",
+      message: "エラーが発生しました。もう一度やり直してください。"
+    });
   }finally{
     connection.end();
     return;

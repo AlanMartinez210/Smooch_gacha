@@ -1,8 +1,21 @@
 doctype html
 html
   head
-    title= title
+    meta(charset="utf-8")
+    meta(name='viewport', content='width=device-width,user-scalable=no,initial-scale=1.0')
+    title Smoochガチャ
+    link(rel='stylesheet', href='/stylesheets/reset.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(src='/javascripts/app.js')
+
+    <script>FontAwesomeConfig = { searchPseudoElements: true };</script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  
   body
-    block content
+    .wrap-body-content.bg
+      .header
+        img(src="/images/title.png")
+      .wrapper
+        block content
+
+    

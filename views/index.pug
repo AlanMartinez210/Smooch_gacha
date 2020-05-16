@@ -1,11 +1,22 @@
 extends layout
 
 block content
+  .gacha_img_container
+  .login_box
+    .label_box
+      p ユーザー名(20文字)
+    .input_box
+      input(type="text", id="user_name", name="user_name", maxlength=20)
+    .label_box
+      p パスワード(8文字)
+    .input_box
+      input(type="password", id="password", name="password", autocomplete="password", maxlength=8)
 
-  p error: #{error}
+    .error_box
+      span#error
 
-  input(type="text", id="user_name", name="user_name", maxlength=50)
-  input(type="password", id="password", name="password", autocomplete="password", maxlength=32)
-
-  button(id="doRegist", name="doRegist", value="ガチャる!!")
-    |ガチャる!!
+    .botton_box
+      button.regist_btn(id="doRegist", name="doRegist", value="新規登録")
+        |新規登録
+      button.login_btn(id="doLogin", name="doLogin", value="ログイン")
+        |ログイン
