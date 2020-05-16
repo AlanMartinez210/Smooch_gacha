@@ -1,3 +1,5 @@
+window.toggleBtn = true;
+
 
 $(document).ready(function(){
     // ログイン
@@ -53,6 +55,13 @@ $(document).ready(function(){
 
     // ガチャ
     $('#doLoadCard').on('click', function(){
+        if(window.toggleBtn){
+            window.toggleBtn = false;
+        }else{
+            return;
+        }
+        $("#gacha_card").fadeOut("slow");
+        
         // 回数チェック
         // テスト
         
@@ -60,24 +69,45 @@ $(document).ready(function(){
             alert("まだ引けません！");
         }else{
             // 引く
+            fetch('/loadcard', {
+                method: "POST",
+                mode: "cors",
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                }
+            })
+            .then(response  => response.json())
+            .then(res  => {
+                console.log(res);
+                if(res.status === "error"){
+                    alert(res.message);
+                    return;
+                }
 
-            // 引いたあとの処理
-            // cookieの時間に+5分する
+                setTimeout(function(){
+                    // 画像の書き換え
+                    $('.card_img').children('img').attr('src', `images/card/${res.resData.card_img}`);
 
-            
+                    // 文字の書き換え
+                    $("#cardName").text(res.resData.card_name)
+                    $("#gacha_card").fadeIn("slow");
+                    window.toggleBtn = true;
+                }, 1000);
 
-            if(typeof $.cookie("gatyacount") === 'undefined'){
-                // 現在時刻を代入
-                $.cookie("gatyacount", new Date().toString(), { expires: 1 });
-                $('#gacha_count').text(`あと ${checkCount()} 回`);
-            }else{
-                let ct = new Date($.cookie("gatyacount"));
-                ct = ct.setMinutes(ct.getMinutes() + 5);
-                $.cookie("gatyacount", new Date(ct).toString(), { expires: 1 });
-                $('#gacha_count').text(`あと ${checkCount()} 回`);
-            }
-            
-        }
+                // 引いたあとの処理
+                // cookieの時間に+5分する
+                if(typeof $.cookie("gatyacount") === 'undefined'){
+                    // 現在時刻を代入
+                    $.cookie("gatyacount", new Date().toString(), { expires: 1 });
+                    $('#gacha_count').text(`あと ${checkCount()} 回`);
+                }else{
+                    let ct = new Date($.cookie("gatyacount"));
+                    ct = ct.setMinutes(ct.getMinutes() + 5);
+                    $.cookie("gatyacount", new Date(ct).toString(), { expires: 1 });
+                    $('#gacha_count').text(`あと ${checkCount()} 回`);
+                }
+            })
+        };
     });
     
     // 回数表示と確認

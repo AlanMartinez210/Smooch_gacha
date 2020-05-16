@@ -12,54 +12,53 @@ const mysqlConnObj = {
 
 const cord_resouce = {
 	group1: [
-  	{id: 32, card_img: "img032.png", card_name:"Nina(しょうがないにゃぁ)"}
+  	{id: 32, card_img: "img032.jpg", card_name:"Nina(しょうがないにゃぁ)"}
   ],
 	group2: [
-  	{id: 33, card_img: "img033.png", card_name:"Nina"}
+  	{id: 33, card_img: "img033.jpg", card_name:"Nina"}
   ],
   group3: [
-    {id:1, card_img: "img001.png", card_name:"sei☆"},
-    {id:2, card_img: "img002.png", card_name:"栗井ムネ男"},
-    {id:3, card_img: "img003.png", card_name:"ぱぬるー"},
-    {id:4, card_img: "img004.png", card_name:"Omoooochi"},
-    {id:5, card_img: "img005.png", card_name:"dolly"},
-    {id:6, card_img: "img006.png", card_name:"sui81"},
-    {id:7, card_img: "img007.png", card_name:"燻肉"},
-    {id:8, card_img: "img008.png", card_name:"ゆいな"},
-    {id:9, card_img: "img009.png", card_name:"鯉登丸"},
-    {id:10, card_img: "img010.png", card_name:"月見ハルカ"},
-    {id:11, card_img: "img011.png", card_name:"羅刹王D"},
-    {id:12, card_img: "img012.png", card_name:"うじ団子"},
-    {id:13, card_img: "img013.png", card_name:"シュウ"},
-    {id:14, card_img: "img014.png", card_name:"柚玉藻"},
-    {id:15, card_img: "img015.png", card_name:"紫音"},
-    {id:16, card_img: "img016.png", card_name:"にちーん"},
-    {id:17, card_img: "img017.png", card_name:"ふる～と"},
-    {id:18, card_img: "img018.png", card_name:"whiterose"},
-    {id:19, card_img: "img019.png", card_name:"ALEX"},
-    {id:20, card_img: "img020.png", card_name:"えくれの"},
-    {id:21, card_img: "img021.png", card_name:"おぱい"},
-    {id:22, card_img: "img022.png", card_name:"sei&燻肉"},
-    {id:23, card_img: "img023.png", card_name:"俺より強い(以下略"},
-    {id:24, card_img: "img024.png", card_name:"ねるふぁ"},
-    {id:25, card_img: "img025.png", card_name:"KAL"},
-    {id:26, card_img: "img026.png", card_name:"ラッキーちゃんす☆"},
-    {id:27, card_img: "img027.png", card_name:"朱桜&朱沙"},
-    {id:28, card_img: "img028.png", card_name:"ホークアイ"},
-    {id:29, card_img: "img039.png", card_name:"SaintTail"},
-    {id:30, card_img: "img030.png", card_name:"ぶる～じゅ"},
-    {id:31, card_img: "img031.png", card_name:"銀ちゃん"}
+    {id:1, card_img: "img001.jpg", card_name:"sei☆"},
+    {id:2, card_img: "img002.jpg", card_name:"栗井ムネ男"},
+    {id:3, card_img: "img003.jpg", card_name:"ぱぬるー"},
+    {id:4, card_img: "img004.jpg", card_name:"Omoooochi"},
+    {id:5, card_img: "img005.jpg", card_name:"dolly"},
+    {id:6, card_img: "img006.jpg", card_name:"sui81"},
+    {id:7, card_img: "img007.jpg", card_name:"燻肉"},
+    {id:8, card_img: "img008.jpg", card_name:"ゆいな"},
+    {id:9, card_img: "img009.jpg", card_name:"鯉登丸"},
+    {id:10, card_img: "img010.jpg", card_name:"月見ハルカ"},
+    {id:11, card_img: "img011.jpg", card_name:"羅刹王D"},
+    {id:12, card_img: "img012.jpg", card_name:"うじ団子"},
+    {id:13, card_img: "img013.jpg", card_name:"シュウ"},
+    {id:14, card_img: "img014.jpg", card_name:"柚玉藻"},
+    {id:15, card_img: "img015.jpg", card_name:"紫音"},
+    {id:16, card_img: "img016.jpg", card_name:"にちーん"},
+    {id:17, card_img: "img017.jpg", card_name:"ふる～と"},
+    {id:18, card_img: "img018.jpg", card_name:"whiterose"},
+    {id:19, card_img: "img019.jpg", card_name:"ALEX"},
+    {id:20, card_img: "img020.jpg", card_name:"えくれの"},
+    {id:21, card_img: "img021.jpg", card_name:"おぱい"},
+    {id:22, card_img: "img022.jpg", card_name:"sei&燻肉"},
+    {id:23, card_img: "img023.jpg", card_name:"俺より強い(以下略"},
+    {id:24, card_img: "img024.jpg", card_name:"ねるふぁ"},
+    {id:25, card_img: "img025.jpg", card_name:"KAL"},
+    {id:26, card_img: "img026.jpg", card_name:"ラッキーちゃんす☆"},
+    {id:27, card_img: "img027.jpg", card_name:"朱桜&朱沙"},
+    {id:28, card_img: "img028.jpg", card_name:"ホークアイ"},
+    {id:29, card_img: "img029.jpg", card_name:"SaintTail"},
+    {id:30, card_img: "img030.jpg", card_name:"ぶる～じゅ"},
+    {id:31, card_img: "img031.jpg", card_name:"銀ちゃん"}
 	]
 }
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('gacha');
-  // if(typeof req.session.user !== 'undefined') {
-  //   res.render('gacha');
-  // }else{
-  //   res.render('index');
-  // }
+  if(typeof req.session.user !== 'undefined') {
+    res.render('gacha');
+  }else{
+    res.render('index');
+  }
 });
 
 // ユーザー登録
@@ -169,17 +168,14 @@ router.get('/logout',　async function(req, res, next) {
 
 // ガチャを実施
 router.post('/loadcard', async function(req, res, next) {
-  //if(typeof req.session.user === 'undefined') res.render('index', { error : 'ログインしてください。'});
-  req.session.user = {
-    user_id: 1
-  }
+  if(typeof req.session.user === 'undefined') res.render('index', { error : 'ログインしてください。'});
 
   let loadcard;
   let group;
   // 抽選処理を行う。
   let randnum = _.random(1, 1000);
   // 0.5%
-  const group1 = [658, 311, 551, 668, 273];
+  const group1 = [9999];
   // 1%
   const group2 = [720, 739, 44, 861, 318, 22, 406, 631, 886, 105];
 
