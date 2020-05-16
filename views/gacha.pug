@@ -1,13 +1,17 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  .login_user_box
+    p 
+      |#{login_user}
 
-  button(id="submit", name="doLoadCard", value="まわす")
-    |まわす
+  .gacha_img_container
 
-  button(id="submit", name="doShowList", value="一覧")
-    |一覧
+  .count_box
+    p#gacha_count
+
+  .gacha_btn_box
+    button(id="doLoadCard", name="doLoadCard", value="まわす")
+      |まわす!!
 
   

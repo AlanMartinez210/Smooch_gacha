@@ -54,11 +54,12 @@ const cord_resouce = {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  if(typeof req.session.user !== 'undefined') {
-    res.render('gacha');
-  }else{
-    res.render('index');
-  }
+  res.render('gacha');
+  // if(typeof req.session.user !== 'undefined') {
+  //   res.render('gacha');
+  // }else{
+  //   res.render('index');
+  // }
 });
 
 // ユーザー登録
@@ -160,15 +161,18 @@ router.post('/login',　async function(req, res, next) {
 });
 
 // ユーザーログアウト
-router.post('/logout',　async function(req, res, next) {
-  req.session.user = {}
+router.get('/logout',　async function(req, res, next) {
+  req.session.user = undefined;
   res.redirect('/');
 });
 
 
 // ガチャを実施
 router.post('/loadcard', async function(req, res, next) {
-  if(typeof req.session.user === 'undefined') res.render('index', { error : 'ログインしてください。'});
+  // if(typeof req.session.user === 'undefined') res.render('index', { error : 'ログインしてください。'});
+  req.session.user = {
+    user_id: 1
+  }
 
   let loadcard;
   let group;
