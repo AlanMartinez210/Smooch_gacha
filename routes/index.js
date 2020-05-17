@@ -168,8 +168,10 @@ router.get('/logout',　async function(req, res, next) {
 
 // ガチャを実施
 router.post('/loadcard', async function(req, res, next) {
-  if(typeof req.session.user === 'undefined') res.render('index', { error : 'ログインしてください。'});
-
+  if(typeof req.session.user === 'undefined'){
+    res.redirect('/');
+  }
+  
   let loadcard;
   let group;
   // 抽選処理を行う。
@@ -190,7 +192,7 @@ router.post('/loadcard', async function(req, res, next) {
     group = 3;
     loadcard = cord_resouce.group3[randnum];
   }
-
+  
   const insertData = {
     user_id: req.session.user.user_id,
     group_id: group,

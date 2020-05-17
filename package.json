@@ -4,7 +4,10 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "pm2:start": "pm2 start app.json --watch && pm2 logs"
+    "pm2:start": "pm2 start app.json --watch && pm2 logs",
+    "pm2:stop": "pm2 stop all",
+    "pm2:delete": "pm2 delete all",
+    "pm2:list": "pm2 list"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
