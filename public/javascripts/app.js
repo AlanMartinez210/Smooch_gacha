@@ -88,14 +88,14 @@ $(document).ready(function(){
 
                 // 引いたあとの処理
                 // cookieの時間に+5分する
-                if(typeof $.cookie("gatyacount") === 'undefined'){
+                if(typeof $.cookie("gatyacount2") === 'undefined'){
                     // 現在時刻を代入
-                    $.cookie("gatyacount", new Date().toString(), { expires: 1 });
+                    $.cookie("gatyacount2", new Date().toString(), { expires: 1 });
                     $('#gacha_count').text(`あと ${checkCount()} 回`);
                 }else{
-                    let ct = new Date($.cookie("gatyacount"));
+                    let ct = new Date($.cookie("gatyacount2"));
                     ct = ct.setMinutes(ct.getMinutes() + 5);
-                    $.cookie("gatyacount", new Date(ct).toString(), { expires: 1 });
+                    $.cookie("gatyacount2", new Date(ct).toString(), { expires: 1 });
                     $('#gacha_count').text(`あと ${checkCount()} 回`);
                 }
                 
@@ -120,7 +120,7 @@ $(document).ready(function(){
 });
 
 function checkCount(){
-    const ck = $.cookie("gatyacount");
+    const ck = $.cookie("gatyacount2");
     if(typeof ck === 'undefined'){
         // cookieがない
         return 1;
@@ -128,7 +128,7 @@ function checkCount(){
         // cookieがある
         // 現在日時を取得
         const nowTime = new Date();
-        const gTime = new Date($.cookie("gatyacount"));
+        const gTime = new Date($.cookie("gatyacount2"));
         // 時刻が同じ場合比較処理を行う。
         if(nowTime.getHours() === gTime.getHours()){
             const elapsedTime = Math.abs(gTime - nowTime);
