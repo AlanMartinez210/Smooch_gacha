@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon ./bin/www",
+    "pm2:start": "pm2 start app.json --watch && pm2 logs"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -18,6 +19,7 @@
     "moment-timezone": "^0.5.28",
     "morgan": "~1.9.1",
     "mysql2": "^2.1.0",
+    "pm2": "^4.4.0",
     "pug": "^2.0.4"
   },
   "devDependencies": {
