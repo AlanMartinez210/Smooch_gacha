@@ -55,6 +55,7 @@ $(document).ready(function(){
 
     // ガチャ
     $('#doLoadCard').on('click', function(){
+        
         if(window.toggleBtn){
             window.toggleBtn = false;
         }else{
@@ -62,13 +63,14 @@ $(document).ready(function(){
         }
         $("#gacha_card").fadeOut("slow");
         
-        // 回数チェック
-        // テスト
-        
+
         if(checkCount() === 0){
             alert("まだ引けません！");
+            window.toggleBtn = true;
+            return;
         }else{
             // 引く
+            $(".gacha_img_container").addClass("shake_box");
             fetch('/loadcard', {
                 method: "POST",
                 mode: "cors",
@@ -78,12 +80,11 @@ $(document).ready(function(){
             })
             .then(response  => response.json())
             .then(res  => {
-                console.log(res);
                 if(res.status === "error"){
                     alert(res.message);
                     return;
                 }
-
+                
                 setTimeout(function(){
                     // 画像の書き換え
                     $('.card_img').children('img').attr('src', `images/card/${res.resData.card_img}`);
@@ -91,8 +92,9 @@ $(document).ready(function(){
                     // 文字の書き換え
                     $("#cardName").text(res.resData.card_name)
                     $("#gacha_card").fadeIn("slow");
+                    $(".gacha_img_container").removeClass("shake_box");
                     window.toggleBtn = true;
-                }, 1000);
+                }, 2000);
 
                 // 引いたあとの処理
                 // cookieの時間に+5分する

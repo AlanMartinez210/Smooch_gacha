@@ -161,6 +161,28 @@ html, body {
   text-align: center;
 }
 
+.shake_box
+{
+  animation-name: shake;
+  animation-duration: 0.2s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes shake
+{
+  from{
+    transform: translateX(-5px);
+  }
+  
+  50%{
+    transform: translateX(10px);
+  }
+  
+  to{
+    transform: translateX(-5px);
+  }
+}
+
 a {
   color: #00B7FF;
 }
