@@ -134,6 +134,7 @@ html, body {
   -ms-transform: translate(-50%, -50%);
   background-color: #FFFFFF;
   padding: 4px;
+  z-index: 100;
 }
 
 .card_box{
