@@ -69,6 +69,7 @@ $(document).ready(function(){
             window.toggleBtn = true;
             return;
         }else{
+
             // 引く
             $(".gacha_img_container").addClass("shake_box");
             fetch('/loadcard', {
@@ -84,17 +85,6 @@ $(document).ready(function(){
                     alert(res.message);
                     return;
                 }
-                
-                setTimeout(function(){
-                    // 画像の書き換え
-                    $('.card_img').children('img').attr('src', `images/card/${res.resData.card_img}`);
-
-                    // 文字の書き換え
-                    $("#cardName").text(res.resData.card_name)
-                    $("#gacha_card").fadeIn("slow");
-                    $(".gacha_img_container").removeClass("shake_box");
-                    window.toggleBtn = true;
-                }, 2000);
 
                 // 引いたあとの処理
                 // cookieの時間に+5分する
@@ -108,6 +98,16 @@ $(document).ready(function(){
                     $.cookie("gatyacount", new Date(ct).toString(), { expires: 1 });
                     $('#gacha_count').text(`あと ${checkCount()} 回`);
                 }
+                
+                setTimeout(function(){
+                    $('.card_img').children('img').attr('src', `images/card/${res.resData.card_img}`);
+
+                    $("#cardName").text(res.resData.card_name)
+                    $("#gacha_card").fadeIn("slow");
+                    $(".gacha_img_container").removeClass("shake_box");
+                    window.toggleBtn = true;
+                }, 2000);
+
             })
         };
     });
