@@ -22,7 +22,7 @@
     "moment-timezone": "^0.5.28",
     "morgan": "~1.9.1",
     "mysql2": "^2.1.0",
-    "pm2": "^4.4.0",
+    "pm2": "^5.2.0",
     "pug": "^2.0.4"
   },
   "devDependencies": {
